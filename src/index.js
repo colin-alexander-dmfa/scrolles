@@ -4,10 +4,16 @@ const setStyle = (domElement, styles) => {
 	}
 };
 
-const getScrollPercentage = domElement => {
+const getScrollPercentage = (domElement, mode) => {
 	// prettier-ignore
-	const percentage = domElement.scrollTop / (domElement.scrollHeight - domElement.clientHeight);
-	return percentage < 0 ? 0 : percentage > 1 ? 1 : percentage.toFixed(3);
+	const computedMode = mode === 'steps' ? 1 : 3;
+	const percentage =
+		domElement.scrollTop / (domElement.scrollHeight - domElement.clientHeight);
+	return percentage < 0
+		? 0
+		: percentage > 1
+		? 1
+		: percentage.toFixed(computedMode);
 };
 
 const scrollProgress = (domElement, config) => {
@@ -21,8 +27,7 @@ const scrollProgress = (domElement, config) => {
 	 * Define the configuration object
 	 */
 	const computedConfig = {
-		position: config.position || 'top',
-		mode: config.mode || 'continue',
+		mode: config.mode || 'continuous',
 		reverse: config.reverse || false,
 		style: {
 			height: config.style.height || '3px',
@@ -39,7 +44,7 @@ const scrollProgress = (domElement, config) => {
 		window.onscroll = () => {
 			domElement.style.setProperty(
 				'--sp-progress',
-				getScrollPercentage(domElement)
+				getScrollPercentage(domElement, computedConfig.mode)
 			);
 		};
 	});

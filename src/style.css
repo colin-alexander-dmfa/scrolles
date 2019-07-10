@@ -9,6 +9,7 @@
 	transform-origin: var(--sp-origin-x, 0) var(--sp-origin-y, 50%);
 	transform: scaleX(var(--sp-progress, 0));
 	background-image: var(--sp-color);
+	background-repeat: repeat;
 }
 
 /*
