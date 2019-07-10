@@ -20,7 +20,7 @@ const getScrollPercentage = (domElement, mode) => {
 		: percentage.toFixed(computedMode);
 };
 
-const updateProgress = (domElement, config) => {
+const updateProgress = (domElement, config = {}) => {
 	domElement.style.setProperty(
 		'--sp-progress',
 		getScrollPercentage(domElement, config.mode)
@@ -55,6 +55,9 @@ const scrollProgress = config => {
 	document.addEventListener('DOMContentLoaded', () => {
 		window.addEventListener('scroll', () => {
 			updateProgress(domElement, computedConfig);
+		});
+		window.addEventListener('resize', () => {
+			updateProgress(domElement);
 		});
 	});
 };
