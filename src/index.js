@@ -1,27 +1,46 @@
-const scrollPercentage = () => {
-	const bodyST = document.body.scrollTop;
-	const docST = document.documentElement.scrollTop;
-	const docSH = document.documentElement.scrollHeight;
-	const docCH = document.documentElement.clientHeight;
-
-	return ((docST + bodyST) / (docSH - docCH)) * 100;
+const setStyle = (domElement, styles) => {
+	for (let property in styles) {
+		domElement.style.setProperty(`--sp-${property}`, styles[property]);
+	}
 };
 
-const defaultConfig = {
-	top: 0,
-	left: 0,
-	right: 0,
-	bottom: "auto"
+const getScrollPercentage = domElement => {
+	// prettier-ignore
+	const percentage = domElement.scrollTop / (domElement.scrollHeight - domElement.clientHeight);
+	return percentage < 0 ? 0 : percentage > 1 ? 1 : percentage.toFixed(3);
 };
 
-const scrollProgress = ({ config = defaultConfig }) => {
-	document.addEventListener("DOMContentLoaded", () => {
+const scrollProgress = (domElement, config) => {
+	/**
+	 * Add the [data-scroll-progress] attribute to the
+	 * element dataset to apply the minimum required style.
+	 */
+	domElement.dataset.scrollProgress = true;
+
+	/**
+	 * Define the configuration object
+	 */
+	const computedConfig = {
+		position: config.position || 'top',
+		mode: config.mode || 'continue',
+		reverse: config.reverse || false,
+		style: {
+			height: config.style.height || '3px',
+			color: config.style.color || 'hotpink'
+		}
+	};
+	/*
+	 * Call setStyle() to apply custom properties from
+	 * the configuration object
+	 */
+	setStyle(domElement, computedConfig.style);
+
+	document.addEventListener('DOMContentLoaded', () => {
 		window.onscroll = () => {
-			const progress = (scrollPercentage() / 100).toFixed(3);
-			console.log(progress);
-			document.body.style.setProperty("--sp-progress", progress);
+			domElement.style.setProperty(
+				'--sp-progress',
+				getScrollPercentage(domElement)
+			);
 		};
 	});
 };
-
-export default scrollProgress;
