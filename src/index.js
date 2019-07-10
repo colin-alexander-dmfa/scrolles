@@ -57,7 +57,7 @@ const scrollProgress = config => {
 			updateProgress(domElement, computedConfig);
 		});
 		window.addEventListener('resize', () => {
-			updateProgress(domElement);
+			updateProgress(domElement, computedConfig);
 		});
 	});
 };
