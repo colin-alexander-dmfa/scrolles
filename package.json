@@ -1,0 +1,31 @@
+{
+	"name": "scroll-progress",
+	"description": "A deadly simple scroll progress indicator based on css and a bunch of js.",
+	"version": "0.0.1",
+	"license": "Unlicense",
+	"author": "Mattia Astorino [@equinusocio]",
+	"main": "./index.js",
+	"homepage": "https://github.com/equinusocio/scroll-progress",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/equinusocio/scroll-progress.git"
+	},
+	"bugs": {
+		"url": "https://github.com/equinusocio/scroll-progress/issues"
+	},
+	"scripts": {},
+	"engines": {
+		"node": ">=11"
+	},
+	"keywords": [
+		"progress",
+		"scroll",
+		"vanilla",
+		"simple",
+		"equinusocio"
+	],
+	"devDependencies": {
+		"@types/node": "^7.0.10",
+		"eslint": "6.0.1"
+	}
+}
