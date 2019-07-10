@@ -1,6 +1,10 @@
-const setStyle = (domElement, styles) => {
-	for (let property in styles) {
-		domElement.style.setProperty(`--sp-${property}`, styles[property]);
+const setStyle = (domElement, config) => {
+	for (let property in config.style) {
+		domElement.style.setProperty(`--sp-${property}`, config.style[property]);
+	}
+
+	if (config.reverse) {
+		domElement.style.setProperty(`--sp-origin-x`, '100%');
 	}
 };
 
@@ -38,7 +42,7 @@ const scrollProgress = (domElement, config) => {
 	 * Call setStyle() to apply custom properties from
 	 * the configuration object
 	 */
-	setStyle(domElement, computedConfig.style);
+	setStyle(domElement, computedConfig);
 
 	document.addEventListener('DOMContentLoaded', () => {
 		window.onscroll = () => {
