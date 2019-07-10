@@ -7,7 +7,14 @@ const scrollPercentage = () => {
 	return ((docST + bodyST) / (docSH - docCH)) * 100;
 };
 
-const scrollProgress = () => {
+const defaultConfig = {
+	top: 0,
+	left: 0,
+	right: 0,
+	bottom: "auto"
+};
+
+const scrollProgress = ({ config = defaultConfig }) => {
 	document.addEventListener("DOMContentLoaded", () => {
 		window.onscroll = () => {
 			const progress = (scrollPercentage() / 100).toFixed(3);
