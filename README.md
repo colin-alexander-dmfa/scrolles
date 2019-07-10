@@ -15,8 +15,8 @@ scrollProgress({
    mode: 'continuous', // or 'steps'
    reverse: false, // or true
    style: {
-		color: 'paleblue',
-		height: '3px'
+	color: 'paleblue',
+	height: '3px'
    }
 });
 ```
