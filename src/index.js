@@ -20,7 +20,15 @@ const getScrollPercentage = (domElement, mode) => {
 		: percentage.toFixed(computedMode);
 };
 
-const scrollProgress = (domElement, config) => {
+const updateProgress = (domElement, config) => {
+	domElement.style.setProperty(
+		'--sp-progress',
+		getScrollPercentage(domElement, config.mode)
+	);
+};
+
+const scrollProgress = config => {
+	const domElement = document.documentElement;
 	/**
 	 * Add the [data-scroll-progress] attribute to the
 	 * element dataset to apply the minimum required style.
@@ -45,11 +53,8 @@ const scrollProgress = (domElement, config) => {
 	setStyle(domElement, computedConfig);
 
 	document.addEventListener('DOMContentLoaded', () => {
-		window.onscroll = () => {
-			domElement.style.setProperty(
-				'--sp-progress',
-				getScrollPercentage(domElement, computedConfig.mode)
-			);
-		};
+		window.addEventListener('scroll', () => {
+			updateProgress(domElement, computedConfig);
+		});
 	});
 };

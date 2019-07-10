@@ -2618,9 +2618,8 @@
 	</div>
 
 	<script>
-		const sp = document.querySelector('[data-sp]');
-		scrollProgress(document.documentElement, {
-			reverse: true,
+		scrollProgress({
+			reverse: 'steps',
 			style: {
 				color: 'linear-gradient(to right, hotpink, blue 100%)'
 			}
