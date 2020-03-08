@@ -1,22 +1,43 @@
-# Scrolles (WIP)
+# Scrolles
+
 A deadly simple scroll progress indicator based on css and js.
 
-> Please note this project is in work in progress.
-
 ## Installation
+
 ```sh
-yarn add -D scrolles
+yarn add scrolles
 ```
 
-## Usage (temp)
+## Usage
+
+Import init the function by passing the optional configuration:
 
 ```js
+import { scrollProgress } from 'scrolles';
+
 scrollProgress({
+   selector: '[data-sp]', // A valid css selector
    mode: 'continuous', // or 'steps'
-   reverse: false, // or true
+   reverse: false, // Reverse the direction
    style: {
-	color: 'paleblue',
-	height: '3px'
+      color: 'blue',
+      height: '3px',
    }
 });
+```
+
+Then add this small css snippet to your CSS:
+
+```css
+[data-scroll-progress]::before {
+   content: '';
+   display: block;
+   position: sticky;
+   height: var(--sp-height);
+   top: var(--sp-top, 0);
+   transform-origin: var(--sp-origin-x, 0) var(--sp-origin-y, 50%);
+   transform: scaleX(var(--sp-progress, 0));
+   background: var(--sp-color);
+   background-repeat: repeat;
+}
 ```
