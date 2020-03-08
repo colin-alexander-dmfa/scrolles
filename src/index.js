@@ -1,3 +1,5 @@
+import ResizeObserver from 'resize-observer-polyfill';
+
 /**
  * Set the required styles to the matching elements
  * @param {Element} domElement
@@ -26,10 +28,8 @@ const setStyle = (domElement, config) => {
  * @param {String} mode
  */
 const getScrollPercentage = (domElement, mode) => {
-	// prettier-ignore
 	const computedMode = mode === 'steps' ? 1 : 3;
-	const percentage =
-		domElement.scrollTop / (domElement.scrollHeight - domElement.clientHeight);
+	const percentage = domElement.scrollTop / (domElement.scrollHeight - domElement.clientHeight);
 
 	/**
 	 * Set minimum [0] and maximum [1] values in order
