@@ -23,9 +23,11 @@
 	"engines": {
 		"node": ">=11"
 	},
-	"size-limit": [{
-		"path": "dist/index.js"
-	}],
+	"size-limit": [
+		{
+			"path": "dist/index.js"
+		}
+	],
 	"keywords": [
 		"progress",
 		"scroll",

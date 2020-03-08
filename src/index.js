@@ -108,13 +108,11 @@ export const scrollProgress = (config = {
 		 * the scroll progress indicator matching the new
 		 * scroll height
 		 */
-		// if (ResizeObserver in window) {
-			const resizeObserver = new ResizeObserver(entries => {
-				for (let entry of entries) {
-					updateProgress(entry.target, config);
-				}
-			});
-			resizeObserver.observe(element, { box : 'border-box' });
-		// }
+		const resizeObserver = new ResizeObserver(entries => {
+			for (let entry of entries) {
+				updateProgress(entry.target, config);
+			}
+		});
+		resizeObserver.observe(element, { box : 'border-box' });
 	});
 };
