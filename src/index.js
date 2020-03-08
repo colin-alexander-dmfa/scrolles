@@ -1,27 +1,6 @@
 import ResizeObserver from 'resize-observer-polyfill';
 
 /**
- * Set the required styles to the matching elements
- * @param {Element} domElement
- * @param {Object} config
- */
-const setStyle = (domElement, config) => {
-	/**
-	 * Auto apply custom properties based on all keys
-	 * inside the style object key.
-	 */
-	for (let property in config.style) {
-		domElement.style.setProperty(`--sp-${property}`, config.style[property]);
-	}
-	/**
-	 * If config.reverse is true change the transform
-	 * origin custom prop
-	 */
-	if (config.reverse) {
-		domElement.style.setProperty(`--sp-origin-x`, '100%');
-	}
-};
-/**
  * Calculate the relative percentage based on
  * the element height and set min/max values
  * @param {Element} domElement
@@ -49,10 +28,10 @@ const getScrollPercentage = (domElement, mode) => {
  * @param {Element} domElement
  * @param {Object} config
  */
-const updateProgress = (domElement, config = {}) => {
+const updateProgress = (domElement, config) => {
 	domElement.style.setProperty(
-		'--sp-progress',
-		getScrollPercentage(domElement, config.mode)
+		'--scrolles-progress',
+		getScrollPercentage(domElement, config.mode || 'continuous')
 	);
 };
 /**
@@ -60,14 +39,10 @@ const updateProgress = (domElement, config = {}) => {
  * the element resize and initialiation. Also set starting style.
  * @param {Object} config
  */
-export const scrollProgress = (config = {
-	selector: '[data-sp]',
+export const Scrolles = (config = {
+	selector: '[data-scrolles]',
 	mode: 'continuous',
-	reverse: false,
-	style: {
-		height: '3px',
-		color: 'hotpink'
-	}
+	reverse: false
 }) => {
 	/**
 	 * Get all elements by the provided selector.
@@ -79,15 +54,10 @@ export const scrollProgress = (config = {
 	 */
 	elements.forEach(element => {
 		/**
-		 * Add the [data-scroll-progress] attribute to the
+		 * Add the [data-scrolles] attribute to the
 		 * element dataset to apply the minimum required style.
 		 */
-		element.dataset.scrollProgress = true;
-		/*
-		 * Call setStyle() to apply custom properties from
-		 * the configuration object
-		 */
-		setStyle(element, config);
+		element.dataset.scrolles = true;
 		/**
 		 * Check if selector match the document element
 		 * and set the scroll listener on window, otherwise

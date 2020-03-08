@@ -10,34 +10,40 @@ yarn add scrolles
 
 ## Usage
 
-Import init the function by passing the optional configuration:
+Import the function and pass the **optional** configuration:
 
 ```js
-import { scrollProgress } from 'scrolles';
+import { Scrolles } from 'scrolles';
 
-scrollProgress({
-   selector: '[data-sp]', // A valid css selector
+Scrolles({
+   selector: '[data-scrolles]', // A valid css selector
    mode: 'continuous', // or 'steps'
-   reverse: false, // Reverse the direction
-   style: {
-      color: 'blue',
-      height: '3px',
-   }
 });
 ```
+Then you can add the selector you've defined to any not-void/replaced element (any element that can contains pseudo elements):
+```html
+<html lang="en" data-scrolles>
+   <head>
+   </head>
+   <body>
+      ....
+   </body>
+</html>
+```
 
-Then add this small css snippet to your CSS:
+Finally, add this small `CSS` snippet to customize the progress indicator.
 
 ```css
-[data-scroll-progress]::before {
-   content: '';
+[data-scrolles]::before {
    display: block;
    position: sticky;
-   height: var(--sp-height);
-   top: var(--sp-top, 0);
-   transform-origin: var(--sp-origin-x, 0) var(--sp-origin-y, 50%);
-   transform: scaleX(var(--sp-progress, 0));
-   background: var(--sp-color);
-   background-repeat: repeat;
+   top: 0;
+
+   /* Required style */
+   content: '';
+   background: hotpink;
+   height: 3px;
+   transform-origin: 0 var(--scrolles-origin-y, 50%);
+   transform: scaleX(var(--scrolles-progress, 0));
 }
 ```

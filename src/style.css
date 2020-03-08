@@ -1,11 +1,11 @@
-[data-scroll-progress]::before {
-	content: '';
+[data-scrolles]::before {
 	display: block;
-	position: sticky;
-	height: var(--sp-height);
-	top: var(--sp-top, 0);
-	transform-origin: var(--sp-origin-x, 0) var(--sp-origin-y, 50%);
-	transform: scaleX(var(--sp-progress, 0));
-	background: var(--sp-color);
-	background-repeat: repeat;
+   position: sticky;
+	top: 0;
+   /* Required style */
+	content: '';
+   background: hotpink;
+	height: 3px;
+	transform-origin: 0 var(--scrolles-origin-y, 50%);
+	transform: scaleX(var(--scrolles-progress, 0));
 }
