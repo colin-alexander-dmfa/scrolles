@@ -1,6 +1,6 @@
 # Scrolles
 
-A deadly simple scroll progress indicator based on css and js.
+A deadly simple and higlhy customizable scroll progress indicator.
 
 ## Installation
 
@@ -28,7 +28,9 @@ Then you can add the selector you've defined to any not-void/replaced element (a
    <head>
    </head>
    <body>
-      ....
+      <div data-scrolles>
+         ....
+      </div>
    </body>
 </html>
 ```
@@ -45,7 +47,7 @@ Finally, add this small `CSS` snippet to customize the progress indicator.
    content: '';
    background: hotpink;
    height: 3px;
-   transform-origin: 0 var(--scrolles-origin-y, 50%);
+   transform-origin: 0 50%;
    transform: scaleX(var(--scrolles-progress, 0));
 }
 ```

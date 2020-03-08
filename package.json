@@ -17,9 +17,9 @@
 		"clean": "yarn rimraf dist/**",
 		"size": "size-limit",
 		"build:js": "parcel build src/index.js --out-dir dist/ --no-source-maps",
-		"build": "run-s clean build:js size",
+		"build": "run-s clean build:js",
 		"dev": "run-s clean build:js && parcel test/index.html",
-		"prepublishOnly": "yarn build"
+		"prepublishOnly": "yarn build && size"
 	},
 	"engines": {
 		"node": ">=11"
