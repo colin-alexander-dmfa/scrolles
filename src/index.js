@@ -1,3 +1,15 @@
+const style = {
+	content: '',
+	display: 'block',
+	position: 'sticky',
+	height: 'var(--sp-height)',
+	top: 'var(--sp-top, 0)',
+	transformOrigin: 'var(--sp-origin-x, 0) var(--sp-origin-y, 50%)',
+	transform: 'scaleX(var(--sp-progress, 0))',
+	background: 'var(--sp-color)',
+	backgroundRepeat: 'repeat',
+}
+
 const setStyle = (domElement, config) => {
 	for (let property in config.style) {
 		domElement.style.setProperty(`--sp-${property}`, config.style[property]);
@@ -13,11 +25,17 @@ const getScrollPercentage = (domElement, mode) => {
 	const computedMode = mode === 'steps' ? 1 : 3;
 	const percentage =
 		domElement.scrollTop / (domElement.scrollHeight - domElement.clientHeight);
-	return percentage < 0
-		? 0
-		: percentage > 1
-		? 1
-		: percentage.toFixed(computedMode);
+
+	switch (percentage) {
+		case percentage < 0:
+			return 1
+
+		case percentage > 1:
+			return 0
+
+		default:
+			return (percentage).toFixed(computedMode)
+	}
 };
 
 const updateProgress = (domElement, config = {}) => {
@@ -27,37 +45,59 @@ const updateProgress = (domElement, config = {}) => {
 	);
 };
 
-const scrollProgress = config => {
-	const domElement = document.documentElement;
+export const scrollProgress = (config = {
+	selector: document.documentElement,
+	mode: 'continuous',
+	reverse: false,
+	style: {
+		height: '3px',
+		color: 'hotpink'
+	}
+}) => {
 	/**
-	 * Add the [data-scroll-progress] attribute to the
-	 * element dataset to apply the minimum required style.
+	 * Get all elements by the provided selector.
 	 */
-	domElement.dataset.scrollProgress = true;
-
+	const elements = [...document.querySelectorAll(config.selector)]
 	/**
-	 * Define the configuration object
+	 * For each element found inside the page
+	 * apply the required style and run the observer
 	 */
-	const computedConfig = {
-		mode: config.mode || 'continuous',
-		reverse: config.reverse || false,
-		style: {
-			height: config.style.height || '3px',
-			color: config.style.color || 'hotpink'
+	elements.forEach(element => {
+		/**
+		 * Add the [data-scroll-progress] attribute to the
+		 * element dataset to apply the minimum required style.
+		 */
+		element.dataset.scrollProgress = true;
+		/*
+		 * Call setStyle() to apply custom properties from
+		 * the configuration object
+		 */
+		setStyle(element, config);
+		/**
+		 * Check if selector match the document element
+		 * and set the scroll listener on window, otherwise
+		 * watch element scrolling
+		 */
+		if (element.localName === 'html') {
+			window.addEventListener('scroll', () => {
+				updateProgress(element, config);
+			});
 		}
-	};
-	/*
-	 * Call setStyle() to apply custom properties from
-	 * the configuration object
-	 */
-	setStyle(domElement, computedConfig);
-
-	document.addEventListener('DOMContentLoaded', () => {
-		window.addEventListener('scroll', () => {
-			updateProgress(domElement, computedConfig);
+		else {
+			element.addEventListener('scroll', () => {
+				updateProgress(element, config);
+			});
+		}
+		/**
+		 * Set the resize observer on elements to update
+		 * the scroll progress indicator matching the new
+		 * scroll height
+		 */
+		const resizeObserver = new ResizeObserver(entries => {
+			for (let entry of entries) {
+				updateProgress(entry.target, config);
+			}
 		});
-		window.addEventListener('resize', () => {
-			updateProgress(domElement, computedConfig);
-		});
+		resizeObserver.observe(element);
 	});
 };
