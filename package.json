@@ -18,7 +18,8 @@
 		"size": "size-limit",
 		"build:js": "parcel build src/index.js --out-dir dist/ --no-source-maps",
 		"build": "run-s clean build:js size",
-		"dev": "run-s clean build:js && parcel test/index.html"
+      "dev": "run-s clean build:js && parcel test/index.html",
+      "prepublishOnly": "yarn build"
 	},
 	"engines": {
 		"node": ">=11"
