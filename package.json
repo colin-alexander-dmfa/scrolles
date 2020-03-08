@@ -1,7 +1,7 @@
 {
   "name": "scrolles",
   "description": "A deadly simple scroll progress indicator based on css and a bunch of js.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "Unlicense",
   "author": "Mattia Astorino [@equinusocio]",
   "main": "./index.js",
@@ -45,6 +45,6 @@
     "size-limit": "4.0.2"
   },
   "dependencies": {
-	 "parcel-bundler": "1.12.4"
+    "parcel-bundler": "1.12.4"
   }
 }
