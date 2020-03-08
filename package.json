@@ -1,7 +1,7 @@
 {
 	"name": "scrolles",
 	"description": "A deadly simple scroll progress indicator based on css and a bunch of js.",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"license": "Unlicense",
 	"author": "Mattia Astorino [@equinusocio]",
 	"main": "dist/index.js",
@@ -18,8 +18,8 @@
 		"size": "size-limit",
 		"build:js": "parcel build src/index.js --out-dir dist/ --no-source-maps",
 		"build": "run-s clean build:js size",
-      "dev": "run-s clean build:js && parcel test/index.html",
-      "prepublishOnly": "yarn build"
+		"dev": "run-s clean build:js && parcel test/index.html",
+		"prepublishOnly": "yarn build"
 	},
 	"engines": {
 		"node": ">=11"
