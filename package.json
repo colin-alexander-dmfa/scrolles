@@ -38,6 +38,7 @@
 	"devDependencies": {
 		"@babel/core": "7.8.7",
 		"@babel/preset-env": "7.8.7",
+		"@juggle/resize-observer": "3.1.1",
 		"@size-limit/preset-small-lib": "4.0.2",
 		"@types/node": "^7.0.10",
 		"babel-plugin-root-import": "6.4.1",
@@ -47,7 +48,6 @@
 		"size-limit": "4.0.2"
 	},
 	"dependencies": {
-		"parcel-bundler": "1.12.4",
-		"resize-observer-polyfill": "1.5.1"
+		"parcel-bundler": "1.12.4"
 	}
 }

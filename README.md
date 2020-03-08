@@ -15,12 +15,14 @@ Import the function and pass the **optional** configuration:
 ```js
 import { Scrolles } from 'scrolles';
 
-Scrolles({
-   selector: '[data-scrolles]', // A valid css selector
-   mode: 'continuous', // or 'steps'
+const scrollIndicator = Scrolles({
+  selector: '[data-scrolles]',
+  mode: 'continuous',
 });
 ```
+
 Then you can add the selector you've defined to any not-void/replaced element (any element that can contains pseudo elements):
+
 ```html
 <html lang="en" data-scrolles>
    <head>
