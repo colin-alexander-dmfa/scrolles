@@ -1,52 +1,67 @@
-const style = {
-	content: '',
-	display: 'block',
-	position: 'sticky',
-	height: 'var(--sp-height)',
-	top: 'var(--sp-top, 0)',
-	transformOrigin: 'var(--sp-origin-x, 0) var(--sp-origin-y, 50%)',
-	transform: 'scaleX(var(--sp-progress, 0))',
-	background: 'var(--sp-color)',
-	backgroundRepeat: 'repeat',
-}
-
+/**
+ * Set the required styles to the matching elements
+ * @param {Element} domElement
+ * @param {Object} config
+ */
 const setStyle = (domElement, config) => {
+	/**
+	 * Auto apply custom properties based on all keys
+	 * inside the style object key.
+	 */
 	for (let property in config.style) {
 		domElement.style.setProperty(`--sp-${property}`, config.style[property]);
 	}
-
+	/**
+	 * If config.reverse is true change the transform
+	 * origin custom prop
+	 */
 	if (config.reverse) {
 		domElement.style.setProperty(`--sp-origin-x`, '100%');
 	}
 };
-
+/**
+ * Calculate the relative percentage based on
+ * the element height and set min/max values
+ * @param {Element} domElement
+ * @param {String} mode
+ */
 const getScrollPercentage = (domElement, mode) => {
 	// prettier-ignore
 	const computedMode = mode === 'steps' ? 1 : 3;
 	const percentage =
 		domElement.scrollTop / (domElement.scrollHeight - domElement.clientHeight);
 
+	/**
+	 * Set minimum [0] and maximum [1] values in order
+	 * to prevent over transformations.
+	 */
 	switch (percentage) {
 		case percentage < 0:
 			return 1
-
 		case percentage > 1:
 			return 0
-
 		default:
 			return (percentage).toFixed(computedMode)
 	}
 };
-
+/**
+ * Return the current computed and formatted scroll percentage
+ * @param {Element} domElement
+ * @param {Object} config
+ */
 const updateProgress = (domElement, config = {}) => {
 	domElement.style.setProperty(
 		'--sp-progress',
 		getScrollPercentage(domElement, config.mode)
 	);
 };
-
+/**
+ * Get the user config and run sub function based on
+ * the element resize and initialiation. Also set starting style.
+ * @param {Object} config
+ */
 export const scrollProgress = (config = {
-	selector: document.documentElement,
+	selector: '[data-sp]',
 	mode: 'continuous',
 	reverse: false,
 	style: {
@@ -93,11 +108,13 @@ export const scrollProgress = (config = {
 		 * the scroll progress indicator matching the new
 		 * scroll height
 		 */
-		const resizeObserver = new ResizeObserver(entries => {
-			for (let entry of entries) {
-				updateProgress(entry.target, config);
-			}
-		});
-		resizeObserver.observe(element);
+		// if (ResizeObserver in window) {
+			const resizeObserver = new ResizeObserver(entries => {
+				for (let entry of entries) {
+					updateProgress(entry.target, config);
+				}
+			});
+			resizeObserver.observe(element, { box : 'border-box' });
+		// }
 	});
 };

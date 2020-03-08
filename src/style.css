@@ -4,9 +4,6 @@
 	position: sticky;
 	height: var(--sp-height);
 	top: var(--sp-top, 0);
-	/* left: var(--sp-left, 0);
-	right: var(--sp-right, 0);
-	bottom: var(--sp-bottom, auto); */
 	transform-origin: var(--sp-origin-x, 0) var(--sp-origin-y, 50%);
 	transform: scaleX(var(--sp-progress, 0));
 	background: var(--sp-color);
