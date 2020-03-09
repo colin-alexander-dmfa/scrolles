@@ -18,7 +18,7 @@ const getScrollPercentage = (domElement, mode) => {
       case percentage > 1:
          return 1
       default:
-         return (percentage).toFixed(computedMode)
+         return percentage.toFixed(computedMode)
    }
 };
 /**
