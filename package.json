@@ -1,7 +1,7 @@
 {
 	"name": "scrolles",
 	"description": "A deadly simple scroll progress indicator based on css and a bunch of js.",
-	"version": "1.3.0",
+	"version": "2.0.0",
 	"license": "Unlicense",
 	"author": "Mattia Astorino [@equinusocio]",
 	"main": "dist/index.js",
@@ -13,7 +13,6 @@
 	"bugs": {
 		"url": "https://github.com/equinusocio/scroll-progress/issues"
 	},
-
 	"scripts": {
 		"clean": "yarn rimraf dist/**",
 		"size": "size-limit",
