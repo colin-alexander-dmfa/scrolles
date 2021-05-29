@@ -6554,6 +6554,13 @@ schema-utils@^3.0.0:
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
 
+scrolles@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/scrolles/-/scrolles-2.0.0.tgz#1905c920830c5dcf67749d282899870ae577d059"
+  integrity sha512-kbiHKGMh5b1516Rlbq2xtpbiY4obrV7WQYoi0okSTCB1OMPGM93tCgs7PezJR4i6sfdvbuMAmfk0qkfi60RsPA==
+  dependencies:
+    parcel-bundler "1.12.5"
+
 "semver@2 || 3 || 4 || 5", semver@^5.4.1, semver@^5.5.0, semver@^5.6.0:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
