@@ -13,13 +13,14 @@
 	"bugs": {
 		"url": "https://github.com/equinusocio/scroll-progress/issues"
 	},
+
 	"scripts": {
 		"clean": "yarn rimraf dist/**",
 		"size": "size-limit",
-		"build:js": "parcel build src/index.js --out-dir dist/ --no-source-maps",
-		"build": "run-s clean build:js",
+		"build:js": "make-dir dist && uglifyjs src/index.js --compress --mangle --warn --output dist/index.js",
+		"build": "run-s clean build:js size",
 		"dev": "run-s clean build:js && parcel test/index.html",
-		"prepublishOnly": "yarn build && size"
+		"prepublishOnly": "run-s build"
 	},
 	"engines": {
 		"node": ">=11"
@@ -50,9 +51,11 @@
 		"@types/node": "^15.6.1",
 		"babel-plugin-root-import": "6.6.0",
 		"eslint": "7.27.0",
+		"make-dir-cli": "3.0.0",
 		"npm-run-all": "4.1.5",
 		"rimraf": "3.0.2",
-		"size-limit": "4.11.0"
+		"size-limit": "4.11.0",
+		"uglify-js": "3.13.8"
 	},
 	"dependencies": {
 		"parcel-bundler": "1.12.5"
