@@ -29,19 +29,52 @@ const getScrollPercentage = (domElement, mode) => {
 const updateProgress = (domElement, config) => {
    domElement.style.setProperty(
       '--scrolles-progress',
-      getScrollPercentage(domElement, config.mode || 'continuous')
+      getScrollPercentage(domElement, config.mode)
    );
 };
 /**
  * Get the user config and run sub function based on
  * the element resize and initialiation. Also set starting style.
- * @param {Object} config
+ * @param {Object} [{}] config Configuration options
+ * @param {String} [[data-scrolles]] config.selector The element selector.
+ * @param {String} [continuous] config.mode The scroll mode. If "step" the indicator will grow with predefined steps.
+ * @param {String} [top] config.position The position of the indicator.
  */
-export const Scrolles = (config = {
-   selector: '[data-scrolles]',
-   mode: 'continuous',
-   reverse: false
-}) => {
+export const Scrolles = (configuration) => {
+   const config = {
+      ...configuration,
+      selector: '[data-scrolles]',
+      mode: 'continuous',
+      position: 'top',
+      reverse: false
+   }
+   /**
+    * Create empty style element
+    */
+   const style = document.createElement('style');
+   /**
+    * Populate the style
+    */
+   style.innerHTML = `
+      ${config.selector}::${config.position === 'top' ? 'before' : 'after'} {
+         height: var(--scrolles-height, 3px);
+         background: var(--scrolles-fill, hotpink);
+         transition: transform 600ms var(--scrolles-easing, cubic-bezier(0.25, 1, 0.5, 1));
+
+         ${config.position === 'top' ? 'top: var(--scrolles-margin, 0);' : 'bottom: var(--scrolles-margin, 0);'}
+         transform-origin: ${config.reverse ? '100%' : '0'} 50%;
+         position: sticky;
+         display: block;
+         content: '';
+         margin: var(--scrolles-margin, 0);
+         transform: scaleX(var(--scrolles-progress, 0));
+         margin-bottom: calc((var(--scrolles-height, 3px) + var(--scrolles-margin, 0)) * -1);
+      }
+   `;
+   /**
+    * Append the style to the document
+    */
+    document.head.appendChild(style);
    /**
     * Get all elements by the provided selector.
     */

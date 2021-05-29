@@ -1,11 +1,7 @@
-[data-scrolles]::before {
-	display: block;
-   position: sticky;
-	top: 0;
-   /* Required style */
-	content: '';
-   background: hotpink;
-	height: 3px;
-	transform-origin: 0 50%;
-	transform: scaleX(var(--scrolles-progress, 0));
+body {margin: 0;}
+
+[data-scrolles] {
+   --scrolles-height: 3px;
+   --scrolles-fill: hotpink;
+   --scrolles-margin: 0;
 }
