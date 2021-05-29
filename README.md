@@ -35,23 +35,13 @@ Then you can add the selector you've defined to any not-void/replaced element (a
 </html>
 ```
 
-Finally, add this small `CSS` snippet to customize the progress indicator.
+Finally, add this small and optional `CSS` snippet if you want to customize the progress indicator.
 
 ```css
-[data-scrolles]::before {
-   /* Visual Appearance */
-   border-radius: 50px;
-   height: 3px;
-   background: hotpink;
-   transition: transform 600ms cubic-bezier(0.25, 1, 0.5, 1);
-
-   /* Required style */
-   top: 0;
-   position: sticky;
-   display: block;
-   content: '';
-   transform-origin: 0 50%;
-   transform: scaleX(var(--scrolles-progress, 0));
+[data-scrolles]{
+   --scrolles-height: 3px;
+   --scrolles-fill: hotpink;
+   --scrolles-margin: 0;
 }
 ```
 
