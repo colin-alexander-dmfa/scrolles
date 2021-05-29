@@ -1,13 +1,13 @@
 {
 	"name": "scrolles",
 	"description": "A deadly simple scroll progress indicator based on css and a bunch of js.",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"license": "Unlicense",
 	"author": "Mattia Astorino [@equinusocio]",
 	"main": "dist/index.js",
-   "files": [
-      "dist/index.js"
-   ],
+	"files": [
+		"dist/index.js"
+	],
 	"homepage": "https://github.com/equinusocio/scroll-progress",
 	"repository": {
 		"type": "git",
