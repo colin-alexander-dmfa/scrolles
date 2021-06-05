@@ -8,13 +8,13 @@
 	"files": [
 		"dist/index.js"
 	],
-	"homepage": "https://github.com/equinusocio/scroll-progress",
+	"homepage": "https://github.com/equinusocio/scrolles",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/equinusocio/scroll-progress.git"
+		"url": "git+https://github.com/equinusocio/scrolles.git"
 	},
 	"bugs": {
-		"url": "https://github.com/equinusocio/scroll-progress/issues"
+		"url": "https://github.com/equinusocio/scrolles/issues"
 	},
 	"scripts": {
 		"clean": "yarn rimraf dist/**",

@@ -94,7 +94,7 @@ export const Scrolles = (configuration) => {
        * and set the scroll listener on window, otherwise
        * watch element scrolling
        */
-      if (element.localName === 'html') {
+      if (element.localName === 'html' && (typeof window !== 'undefined')) {
          window.addEventListener('scroll', () => {
             updateProgress(element, config);
          });

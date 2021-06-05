@@ -1,9 +1,7 @@
 {
 	"eslint.alwaysShowStatus": true,
 	"javascript.validate.enable": false,
-	"eslint.enable": true,
 	"stylelint.enable": true,
-	"stylelint.autoFixOnSave": true,
 	"css.validate": false,
 	"scss.validate": false,
 	"files.associations": {
